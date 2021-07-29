@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Country.hasMany(models.Athlete, { foreignKey: 'CountryId' })
     }
+    static halo(){
+      return 'Welcome to Olympic!'
+    }
   };
   Country.init({
     code: {
