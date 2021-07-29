@@ -1,0 +1,44 @@
+<%- include('../partials/header') %>
+
+<h2>Edit an Athlete</h2>
+<br>
+<form action="/countries/athletes/<%= datum.id %>/edit" method="post">
+  <div class="mb-3">
+    <label class="form-label">Full Name</label>
+    <input type="text" name="name" class="form-control" value="<%= datum.name %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Age</label>
+    <input type="number" name="age" class="form-control" value="<%= datum.age %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Phone Number</label>
+    <input type="number" name="phone_number" class="form-control" value="<%= datum.phone_number %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Email Address</label>
+    <input type="email" name="email" class="form-control" value="<%= datum.email %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Sport</label>
+    <select name="SportId" class="form-select">
+      <option value="" selected>Select</option>
+      <% data.forEach(el=>{ %>
+      <option value="<%= el.id %>" <%= datum.SportId==el.id? "selected" : "" %> ><%= el.name %></option>
+      <% }) %>
+    </select>
+  </div>
+  
+  <input type="submit" value="EDIT" class="btn btn-primary">
+
+</form>
+
+<a href="/countries/athletes">Back</a>
+<br>
+
+<% errs.forEach(el=>{ %>
+  <p><%= el %></p>
+<% }) %>
+
+</body>
+</html>

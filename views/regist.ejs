@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<h1 style="text-align: center;">REGIST</h1>
+
+<form action="/register" method="post" style="text-align: center;">
+  <label for="">Country Code</label><br>
+  <input type="text" name="code" id=""><br><br>
+  <label for="">Country Name</label><br>
+  <input type="text" name="name" id=""><br><br>
+  <label for="">Username</label><br>
+  <input type="text" name="username" id=""><br><br>
+  <label for="">Password</label><br>
+  <input type="password" name="password" id=""><br><br>
+  <input type="submit" value="REGIST">
+</form>
+
+<br><br>
+<% msg.forEach(el => { %>
+  <p style="text-align: center;"><%= el %></p>
+<% }) %>
+
+</body>
+</html>

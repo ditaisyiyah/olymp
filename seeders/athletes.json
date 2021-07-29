@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Albert",
+    "age": 23,
+    "phone_number": "987678",
+    "email": "albert@gmail.com",
+    "SportId": 1
+  },
+  {
+    "name": "Elena",
+    "age": 40,
+    "phone_number": "347678",
+    "email": "elena@gmail.com",
+    "SportId": 1
+  },
+  {
+    "name": "Joko",
+    "age": 25,
+    "phone_number": "954678",
+    "email": "joko@gmail.com",
+    "SportId": 9
+  },
+  {
+    "name": "Einstein",
+    "age": 26,
+    "phone_number": "987338",
+    "email": "einstein@gmail.com",
+    "SportId": 7
+  },
+  {
+    "name": "Marie",
+    "age": 26,
+    "phone_number": "987112",
+    "email": "marie@gmail.com",
+    "SportId": 7
+  },
+  {
+    "name": "Dawskin",
+    "age": 24,
+    "phone_number": "987892",
+    "email": "dawskin@gmail.com",
+    "SportId": 5
+  },
+  {
+    "name": "Carl",
+    "age": 23,
+    "phone_number": "507112",
+    "email": "carl@gmail.com",
+    "SportId": 3
+  }
+]
