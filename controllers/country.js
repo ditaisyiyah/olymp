@@ -1,8 +1,10 @@
 const { Country, Sport, Athlete } = require('../models')
+const transporter = require('../nodemailer')
 
 class CountryCtr{
   static welcome(req, res){
-    res.render('welcome')
+    const halo = Country.halo()
+    res.render('welcome', {halo})
   }
 
   static home(req, res){
@@ -83,14 +85,31 @@ class CountryCtr{
     static addAthlete(req, res){
       Athlete
         .create({
-          name: req.body.name,
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          gender: req.body.gender,
           age: req.body.age,
-          phone_number: req.body.phone_number,
           email: req.body.email, 
           SportId: req.body.SportId,
           CountryId: req.session.aydi,
         })
-        .then((datum) => {
+        .then((datum) => { 
+          // res.send(datum)
+          var mailOptions = {
+            from: 'ditahacktiv@gmail.com',
+            to: datum.email,
+            subject: 'Olympic Registration',
+            text: 'Hi! You recently are registed in Olympics!'
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+
           const msg = `✅️ Athlete ID ${datum.id} just added ✅️`
           res.redirect(`/countries/athletes?msg=${msg}`)
         })

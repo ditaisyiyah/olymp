@@ -1,23 +1,34 @@
 const { checkPassword } = require('../helpers/bcrypt')
-const { Country, Sport, Athlete } = require('../models')
+const { Country } = require('../models')
 
 class AuthCtr{
   static getRegist(req, res){
-    const msg = req.query?.msg ?? []
-    res.render('regist', {msg})
+    const payload = {}
+    payload.errs = req.query?.errs?.split(',') ?? []
+    payload.msg = req.query?.msg ?? ''
+    res.render('regist', payload)
   }
 
   static postRegist(req, res){
     const {code, name, username, password} = req.body
     Country
-    .create({code, name, username, password})
-    .then((datum) => {
-      res.redirect('/login')
-    })
-    .catch(err => {
-      const errs = err.errors.map(el => el.message)
-      res.redirect(`/regist?msg=${errs[0]}`)
-    })
+      .findOne({where: {username}})
+      .then(datum => {
+        if(datum){ 
+          const msg = `❌️ Username is not available ❌️`
+          res.redirect(`/register?msg=${msg}`)
+        }else{
+          return Country
+            .create({code, name, username, password}) 
+        }
+      })
+      .then(() => {
+        res.redirect('/login')
+      })
+      .catch(err => {
+        const errs = err.errors.map(el => el.message)
+        res.redirect(`/register?errs=${errs[0]}`)
+      })
   }
 
   static getLogin(req, res){
@@ -47,8 +58,7 @@ class AuthCtr{
         }
       })
       .catch(err => {
-        console.log(err);
-        res.send(err)
+        res.redirect(`/login?msg=Invalid username and/or password`)
       })
 
   }
