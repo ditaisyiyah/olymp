@@ -2,7 +2,7 @@ const express = require('express')
 const session = require('express-session')
 const router = require('./routes/router')
 const app = express()
-const PORT = 3003
+const PORT = process.env.PORT
 
 app.use(express.urlencoded({extended: true}))
 
