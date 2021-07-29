@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline;">
+  <h2>Welcome, <%= name %> !</h2>
+  <div style="display: flex; justify-content: space-between;">
+    <h4 style="padding: 0vh 1vw;"><a href="/countries">Home</a></h4>
+    <h4 style="padding: 0vh 1vw;"><a href="/countries/athletes">Athletes</a></h4>
+    <h4 style="padding: 0vh 1vw;"><a href="/">Logout</a></h4>
+  </div>
+</div>
+
+<br><br>
+
+<table class="table" style="text-align: center;">
+  <tr>
+    <th>No.</th>
+    <th>Flag</th>
+    <th>Country</th>
+  </tr>
+  <% data.forEach((el, i)=>{ %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><img src="https://www.countryflags.io/<%= el.code %>/flat/24.png"></td>
+      <td><a href="/countries/<%= el.id %>/show">
+        <%= el.name %></a></td>
+    </tr>
+  <% }) %>
+</table>
+ 
+
+</body>
+</html>
