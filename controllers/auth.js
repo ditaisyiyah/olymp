@@ -1,5 +1,5 @@
 const { checkPassword } = require('../helpers/bcrypt')
-const { Country, Sport, Athlete } = require('../models')
+const { Country } = require('../models')
 
 class AuthCtr{
   static getRegist(req, res){
