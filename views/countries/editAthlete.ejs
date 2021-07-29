@@ -4,16 +4,24 @@
 <br>
 <form action="/countries/athletes/<%= datum.id %>/edit" method="post">
   <div class="mb-3">
-    <label class="form-label">Full Name</label>
-    <input type="text" name="name" class="form-control" value="<%= datum.name %>">
+    <label class="form-label">First Name</label>
+    <input type="text" name="name" class="form-control" value="<%= datum.first_name %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Last Name</label>
+    <input type="text" name="name" class="form-control" value="<%= datum.last_name %>">
+  </div>
+  <div class="mb-3">
+    <label class="form-label">Gender</label>
+    <select name="gender" class="form-select">
+      <option value="" disabled>Select</option>
+      <option value="Female" <%= datum.gender=="Female"? "selected" : "" %> >Female</option>
+      <option value="Male" <%= datum.gender=="Male"? "selected" : "" %>>Male</option>
+    </select>
   </div>
   <div class="mb-3">
     <label class="form-label">Age</label>
     <input type="number" name="age" class="form-control" value="<%= datum.age %>">
-  </div>
-  <div class="mb-3">
-    <label class="form-label">Phone Number</label>
-    <input type="number" name="phone_number" class="form-control" value="<%= datum.phone_number %>">
   </div>
   <div class="mb-3">
     <label class="form-label">Email Address</label>

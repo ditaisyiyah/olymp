@@ -11,34 +11,20 @@
 </div>
 
 <br><br>
-<!--  -->
-<h5><a href="/countries/athletes/add">Add an Athlete</a></h5>
-
-<%= msg %>
 
 <table class="table" style="text-align: center;">
   <tr>
     <th>No.</th>
     <th>ID</th>
-    <th>Full Name</th>
     <th>Sport</th>
-    <th>Gender</th>
-    <th>Age</th>
-    <th>Email Address</th>
-    <th>Actions</th>
+    <th>Player</th>
   </tr>
   <% data.forEach((el, i) => { %>
     <tr>
       <td><%= i+1 %></td>
       <td><%= el.id %></td>
-      <td><%= el.getName() %></td>
-      <td><%= el.Sport.name %></td>
-      <td><%= el.gender %></td>
-      <td><%= el.getAge() %></td>
-      <td><%= el.email %></td>
-      <td><a href="/countries/athletes/<%= el.id %>/edit">Edit</a> | 
-      <a href="/countries/athletes/<%= el.id %>/delete" onclick="return confirm('Are you sure want to delete Athlete ID <%= el.id %>?')">Delete</a>
-      </td>
+      <td><%= el.name %></td>
+      <td><%= el.Athletes.length %></td>
     </tr>
   <% }) %>
 </table>

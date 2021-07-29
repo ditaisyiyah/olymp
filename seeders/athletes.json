@@ -1,51 +1,65 @@
 [
   {
-    "name": "Albert",
+    "first_name": "Albert",
+    "last_name": "Einstein",
+    "gender": "Male",
     "age": 23,
-    "phone_number": "987678",
     "email": "albert@gmail.com",
-    "SportId": 1
+    "SportId": 1,
+    "CountryId": 3
   },
   {
-    "name": "Elena",
+    "first_name": "Elena",
+    "last_name": "Yoryevna",
+    "gender": "Female",
     "age": 40,
-    "phone_number": "347678",
     "email": "elena@gmail.com",
-    "SportId": 1
+    "SportId": 1,
+    "CountryId": 3
   },
   {
-    "name": "Joko",
+    "first_name": "Joko",
+    "last_name": "Saputro",
+    "gender":"Male",
     "age": 25,
-    "phone_number": "954678",
     "email": "joko@gmail.com",
-    "SportId": 9
+    "SportId": 9,
+    "CountryId": 1
   },
   {
-    "name": "Einstein",
+    "first_name": "Richard",
+    "last_name": "Dawkins",
+    "gender": "Male",
     "age": 26,
-    "phone_number": "987338",
-    "email": "einstein@gmail.com",
-    "SportId": 7
+    "email": "richard@gmail.com",
+    "SportId": 7,
+    "CountryId": 3
   },
   {
-    "name": "Marie",
+    "first_name": "Marie",
+    "last_name": "Currie",
+    "gender": "Female",
     "age": 26,
-    "phone_number": "987112",
     "email": "marie@gmail.com",
-    "SportId": 7
+    "SportId": 7,
+    "CountryId": 2
   },
   {
-    "name": "Dawskin",
+    "first_name": "Melon",
+    "last_name": "Eusk",
+    "gender": "Male",
     "age": 24,
-    "phone_number": "987892",
-    "email": "dawskin@gmail.com",
-    "SportId": 5
+    "email": "melon@gmail.com",
+    "SportId": 5,
+    "CountryId": 2
   },
   {
-    "name": "Carl",
+    "first_name": "Citta",
+    "last_name": "Irlanie",
+    "gender": "Female",
     "age": 23,
-    "phone_number": "507112",
-    "email": "carl@gmail.com",
-    "SportId": 3
+    "email": "citta@gmail.com",
+    "SportId": 3,
+    "CountryId": 1
   }
 ]

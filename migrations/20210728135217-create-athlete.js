@@ -8,17 +8,20 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      first_name: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      last_name: {
+        type: Sequelize.STRING
+      },
+      gender: {
         allowNull: false,
         type: Sequelize.STRING
       },
       age: {
         allowNull: false,
         type: Sequelize.INTEGER
-      },
-      phone_number: {
-        allowNull: false,
-        type: Sequelize.STRING
       },
       email: {
         allowNull: false,
@@ -29,6 +32,16 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Sports',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      CountryId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Countries',
           key: 'id',
         },
         onUpdate: 'CASCADE',

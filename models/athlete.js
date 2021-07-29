@@ -11,13 +11,39 @@ module.exports = (sequelize, DataTypes) => {
     getAge(){
       return this.age + ' years'
     }
+    getName(){
+      let fname = this.first_name.split('')
+      let lname = this.last_name.split('')
+      let fullName = ''
+      for(let [i, char] of fname.entries()){
+        if(i==0) fullName+=char.toUpperCase()
+        else fullName+=char
+      }
+      fullName+=' '
+      for(let [i, char] of lname.entries()){
+        if(i==0) fullName+=char.toUpperCase()
+        else fullName+=char
+      }
+      return fullName
+    }
   };
   Athlete.init({
-    name: {
+    first_name: {
       type: DataTypes.STRING,
       validate: {
         notEmpty: {
-          msg: `❌️ Name must be filled ❌️`
+          msg: `❌️ First Name must be filled ❌️`
+        }
+      }
+    },
+    last_name: {
+      type: DataTypes.STRING,
+    },
+    gender: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: {
+          msg: `❌️ Gender must be filled ❌️`
         }
       }
     },
@@ -26,15 +52,15 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notEmpty: {
           msg: `❌️ Age must be filled ❌️`
-        }
-      }
-    },
-    phone_number: {
-      type: DataTypes.STRING,
-      validate: {
-        notEmpty: {
-          msg: `❌️ Phone Number must be filled ❌️`
-        }
+        },
+        isNumeric: {
+          msg: `❌️ Age must be a number ❌️`
+        },
+        isNumeric: {
+          msg: `❌️ Age must be a number ❌️`
+        },
+        max: 20,
+        min: 30, 
       }
     },
     email: {
@@ -53,11 +79,12 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Athlete.addHook('beforeCreate', (instance, options)=>{
-    //TODO
+    if(!instance.last_name) instance.last_name = instance.first_name
+
   })
   
   Athlete.addHook('beforeUpdate', (instance, options)=>{
-    //TODO
+    if(!instance.last_name) instance.last_name = instance.first_name
   })
   return Athlete;
 };
