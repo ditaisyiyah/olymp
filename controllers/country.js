@@ -9,10 +9,34 @@ class CountryCtr{
     const payload = {}
     payload.name = req.session.name
     Country
-      .findAll()
+      .findAll({
+        include: [Athlete]
+      })
       .then(data => {
+        // res.send(data)
         payload.data = data
         res.render('countries/country', payload)
+      })
+      .catch(err => {
+        console.log(err)
+        res.send(err.message)
+      })
+  }
+
+  static sports(req, res){
+    const payload = {} 
+    payload.name = req.session.name
+    Sport
+      .findAll({
+        include: [{ 
+          model: Athlete,
+          where: {CountryId: req.session.aydi}
+        }]
+      })
+      .then(data => {
+        // res.send(data)
+        payload.data = data
+        res.render('countries/sports', payload)
       })
       .catch(err => {
         console.log(err)
@@ -27,12 +51,11 @@ class CountryCtr{
     Athlete
       .findAll({
         where: { CountryId: req.session.aydi },
-        order: [['name', 'ASC']],
-        include: [{ 
-          model: Sport,
-        }]
+        // order: [['name', 'ASC']],
+        include: [Sport]
       })
       .then(data => {
+        // res.send(data)
         payload.data = data
         res.render('countries/athletes', payload)
       })
@@ -59,23 +82,23 @@ class CountryCtr{
     
     static addAthlete(req, res){
       Athlete
-      .create({
-        name: req.body.name,
-        age: req.body.age,
-        phone_number: req.body.phone_number,
-        email: req.body.email, 
-        SportId: req.body.SportId,
-        CountryId: req.session.aydi,
-      })
-      .then((datum) => {
-        const msg = `✅️ Athlete ID ${datum.id} just added ✅️`
-        res.redirect(`/countries/athletes?msg=${msg}`)
-      })
-      .catch(err => {
-        console.log(err)
-        const errs = err.errors.map(el => el.message)
-        res.redirect(`/countries/athletes/add?err=${errs}`)
-      })
+        .create({
+          name: req.body.name,
+          age: req.body.age,
+          phone_number: req.body.phone_number,
+          email: req.body.email, 
+          SportId: req.body.SportId,
+          CountryId: req.session.aydi,
+        })
+        .then((datum) => {
+          const msg = `✅️ Athlete ID ${datum.id} just added ✅️`
+          res.redirect(`/countries/athletes?msg=${msg}`)
+        })
+        .catch(err => {
+          console.log(err)
+          const errs = err.errors.map(el => el.message)
+          res.redirect(`/countries/athletes/add?err=${errs}`)
+        })
     }
     
     static editAthleteForm(req, res){
@@ -83,23 +106,23 @@ class CountryCtr{
       const payload = {}
       payload.errs = req.query?.err?.split(',') ?? []
       Athlete
-      .findByPk(id)
-      .then(datum => {
-        payload.datum = datum
-        return Sport.findAll()
-      })
-      .then(data=>{
-        payload.data = data
-        res.render('countries/editAthlete', payload)
-      })
-      .catch(err => {
-        console.log(err);
-        res.send(err)
-      })
-      .catch(err => {
+        .findByPk(id)
+        .then(datum => {
+          payload.datum = datum
+          return Sport.findAll()
+        })
+        .then(data=>{
+          payload.data = data
+          res.render('countries/editAthlete', payload)
+        })
+        .catch(err => {
           console.log(err);
           res.send(err)
-      })
+        })
+        .catch(err => {
+            console.log(err);
+            res.send(err)
+        })
   }
 
   static editAthlete(req, res){
@@ -137,6 +160,11 @@ class CountryCtr{
         console.log(err)
         res.send(err.message)
       })
+  }
+
+  static logout(req, res){
+    req.session.isLoggedIn = false
+    res.redirect('/')
   }
 
 }

@@ -3,10 +3,12 @@ const CountryCtr = require('../controllers/country')
 
 const router = require('express').Router()
 
-router.get('/', CountryCtr.welcome)
+router.get('/', checkLogout, CountryCtr.welcome)
 
 // ============= CREDENTIAL ROUTE
 router.get('/countries', checkLogin, CountryCtr.home)
+
+router.get('/countries/sports', checkLogin, CountryCtr.sports)
 
 router.get('/countries/athletes', checkLogin, CountryCtr.getAthletes)
 
@@ -18,18 +20,27 @@ router.post('/countries/athletes/:id/edit', checkLogin, CountryCtr.editAthlete)
 
 router.get('/countries/athletes/:id/delete', checkLogin, CountryCtr.delAthlete)
 
+router.get('/countries/logout', checkLogin, CountryCtr.logout)
 
 // ============= AUTH
-router.get('/register', AuthCtr.getRegist)
-router.post('/register', AuthCtr.postRegist)
-router.get('/login', AuthCtr.getLogin)
-router.post('/login', AuthCtr.postLogin)
+router.get('/register', checkLogout, AuthCtr.getRegist)
+router.post('/register', checkLogout, AuthCtr.postRegist)
+router.get('/login', checkLogout, AuthCtr.getLogin)
+router.post('/login', checkLogout, AuthCtr.postLogin)
 
 function checkLogin (req, res, next) {
   if(req.session.isLoggedIn){
     next()
   }else{
     res.redirect('/login')
+  }
+}
+
+function checkLogout (req, res, next) {
+  if(!req.session.isLoggedIn){
+    next()
+  }else{
+    res.redirect('/countries')
   }
 }
 

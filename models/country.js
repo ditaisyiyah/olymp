@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
   class Country extends Model {
     static associate(models) {
       Country.hasMany(models.Athlete, { foreignKey: 'CountryId' })
-      Country.belongsToMany(models.Sport, { through: 'CountriesSport', foreignKey: 'CountryId'})
     }
   };
   Country.init({
