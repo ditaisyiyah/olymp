@@ -4,6 +4,8 @@ const router = require('express').Router()
 
 router.get('', checkLogin, CountryCtr.home)
 
+router.get('/sponsors', checkLogin, CountryCtr.sponsors)
+
 router.get('/sports', checkLogin, CountryCtr.sports)
 
 router.get('/athletes', checkLogin, CountryCtr.getAthletes)

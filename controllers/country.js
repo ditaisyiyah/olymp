@@ -23,6 +23,10 @@ class CountryCtr{
       })
   }
 
+  static sponsors(req, res){
+    //TODO
+  }
+
   static sports(req, res){
     const payload = {} 
     payload.name = req.session.name
