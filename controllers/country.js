@@ -12,10 +12,10 @@ class CountryCtr{
     payload.name = req.session.name
     Country
       .findAll({
-        include: [Athlete]
+        include: [Athlete],
+        order: [['name', 'ASC']],
       })
       .then(data => {
-        // res.send(data)
         payload.data = data
         res.render('countries/country', payload)
       })
@@ -23,20 +23,20 @@ class CountryCtr{
         console.log(err)
         res.send(err.message)
       })
-  }
-
-  static sports(req, res){
-    const payload = {} 
-    payload.name = req.session.name
-    Sport
+    }
+    
+    static sports(req, res){
+      const payload = {} 
+      payload.name = req.session.name
+      Sport
       .findAll({
         include: [{ 
           model: Athlete,
           where: {CountryId: req.session.aydi}
-        }]
+        }],
+        order: [['name', 'ASC']]
       })
       .then(data => {
-        // res.send(data)
         payload.data = data
         res.render('countries/sports', payload)
       })
@@ -53,11 +53,10 @@ class CountryCtr{
     Athlete
       .findAll({
         where: { CountryId: req.session.aydi },
-        // order: [['name', 'ASC']],
-        include: [Sport]
+        include: Sport,
+        order: [[Sport, 'name', 'ASC']],
       })
       .then(data => {
-        // res.send(data)
         payload.data = data
         res.render('countries/athletes', payload)
       })
@@ -94,7 +93,6 @@ class CountryCtr{
           CountryId: req.session.aydi,
         }, { individualHooks: true } )
         .then((datum) => { 
-          // res.send(datum)
           var mailOptions = {
             from: 'ditahacktiv@gmail.com',
             to: datum.email,
@@ -104,11 +102,8 @@ class CountryCtr{
           };
           
           transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-              console.log(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-            }
+            if (error) console.log(error)
+            else console.log('Email sent: ' + info.response)
           });
 
           const msg = `✅️ Athlete ID ${datum.id} just added ✅️`
@@ -174,7 +169,7 @@ class CountryCtr{
     Athlete
       .destroy({where: {id}})
       .then(num => {
-        if(!num) throw new Error (`❌️ No Athlete with ID ${id} ❌️`)
+        if(!num) res.send(`❌️ No Athlete with ID ${id} ❌️`)
         const msg = `✅️ Athelete ID ${id} just removed ✅️`
         res.redirect(`/countries/athletes?msg=${msg}`)
       })

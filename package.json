@@ -1,8 +1,8 @@
 {
   "name": "project-p1",
   "version": "1.0.0",
-  "description": "27 July 2021",
-  "main": "index.js",
+  "description": "trully tiny prototype for olimpic games portal registration",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"

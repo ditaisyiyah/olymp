@@ -51,14 +51,15 @@ class AuthCtr{
             req.session.name = datum.name
             res.redirect('/countries')
           }else{
-            throw new Error (`Invalid username and/or password`) 
+            throw new Error (`❌️ Invalid Username and/or Password ❌️`) 
           }
         }else{
-          throw new Error (`Invalid username and/or password`)
+          throw new Error (`❌️ Invalid Username and/or Password ❌️`)
         }
       })
       .catch(err => {
-        res.redirect(`/login?msg=Invalid username and/or password`)
+        const msg = `❌️ Invalid Username and/or Password ❌️`
+        res.redirect(`/login?msg=${msg}`)
       })
 
   }
