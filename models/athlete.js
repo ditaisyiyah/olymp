@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
       Athlete.belongsTo(models.Country, { foreignKey: 'CountryId' })
     }
     getAge(){
-      return this.age + ' years'
+      return this.age + ' y.o.'
     }
     getName(){
       let fname = this.first_name.split('')
@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
         else fullName+=char
       }
       return fullName
+    }
+    getGender(){
+      return this.gender=='Female'? '♀️' : '♂';
     }
   };
   Athlete.init({

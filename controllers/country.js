@@ -92,14 +92,15 @@ class CountryCtr{
           email: req.body.email, 
           SportId: req.body.SportId,
           CountryId: req.session.aydi,
-        })
+        }, { individualHooks: true } )
         .then((datum) => { 
           // res.send(datum)
           var mailOptions = {
             from: 'ditahacktiv@gmail.com',
             to: datum.email,
-            subject: 'Olympic Registration',
-            text: 'Hi! You recently are registed in Olympics!'
+            subject: 'Olympics Registration',
+            text: `Hi, ${datum.first_name}!
+            You recently are registered in Olympics!`
           };
           
           transporter.sendMail(mailOptions, function(error, info){
@@ -148,8 +149,8 @@ class CountryCtr{
     const id = req.params.id
     Athlete
       .update({
-        first_name: req.body.name[0],
-        last_name: req.body.name[1],
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
         gender: req.body.gender,
         age: req.body.age,
         email: req.body.email, 
