@@ -164,7 +164,7 @@ class CountryCtr{
       .catch(err => {
         console.log(err)
         const errs = err.errors.map(el => el.message)
-        res.redirect(`/countries/athletes/edit?err=${errs}`)
+        res.redirect(`/countries/athletes/${id}/edit?err=${errs}`)
       })
   }
 

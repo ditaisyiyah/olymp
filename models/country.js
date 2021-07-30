@@ -53,9 +53,5 @@ module.exports = (sequelize, DataTypes) => {
   Country.addHook('beforeCreate', (instance, options)=>{
     instance.password = hashPassword(instance.password)
   })
-
-  Country.addHook('beforeUpdate', (instance, options)=>{
-    //TODO
-  })
   return Country;
 };

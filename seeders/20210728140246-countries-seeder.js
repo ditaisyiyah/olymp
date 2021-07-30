@@ -1,5 +1,6 @@
 'use strict';
-const fs = require('fs/promises')
+const fs = require('fs/promises');
+const { hashPassword } = require('../helpers/bcrypt');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -7,6 +8,7 @@ module.exports = {
       .then(res => {
         const data = JSON.parse(res)
         data.forEach(el => {
+          el.password = hashPassword(el.password)
           el.createdAt = new Date(),
           el.updatedAt = new Date()
         })

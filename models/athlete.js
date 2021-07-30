@@ -59,8 +59,14 @@ module.exports = (sequelize, DataTypes) => {
         isNumeric: {
           msg: `❌️ Age must be a number ❌️`
         },
-        min: 20,
-        max: 30, 
+        min: {
+          args: 20,
+          msg: `❌️ Age must be greater than or equal 20 ❌️`
+        },
+        max: {
+          args: 30,
+          msg: `❌️ Age must be lower than or equal 20 ❌️`
+        } 
       }
     },
     email: {
