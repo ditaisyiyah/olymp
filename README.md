@@ -1,5 +1,4 @@
 # project-p1
-27 July 2021
+30/07/2021
 
-Note:
-countries seeder sudah di hashing
+https://olym-pic.herokuapp.com/
