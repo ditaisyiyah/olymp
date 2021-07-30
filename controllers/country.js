@@ -155,7 +155,8 @@ class CountryCtr{
         email: req.body.email, 
         SportId: req.body.SportId,
         CountryId: req.session.aydi,
-      },{ where: { id } })
+      },{ where: { id }, individualHooks: true }
+      )
       .then(() => {
         const msg = `✅️ Athlete ID ${id} just updated ✅️`
         res.redirect(`/countries/athletes?msg=${msg}`)
