@@ -37,15 +37,19 @@
     </select>
   </div>
   
-  <input type="submit" value="EDIT" class="btn btn-primary">
+  <div style="text-align: center;">
+    <input  type="submit" value="EDIT" class="btn btn-primary">
+  </div>
 
 </form>
-
-<a href="/countries/athletes">Back</a>
+<br>
+<div style="text-align: center;" >
+  <a href="/countries/athletes" class="btn btn-primary" >Back</a>
+</div>
 <br>
 
 <% errs.forEach(el=>{ %>
-  <p><%= el %></p>
+  <p style="text-align: center;"><%= el %></p>
 <% }) %>
 
 </body>

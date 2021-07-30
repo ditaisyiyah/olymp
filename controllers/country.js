@@ -148,9 +148,10 @@ class CountryCtr{
     const id = req.params.id
     Athlete
       .update({
-        name: req.body.name,
+        first_name: req.body.name[0],
+        last_name: req.body.name[1],
+        gender: req.body.gender,
         age: req.body.age,
-        phone_number: req.body.phone_number,
         email: req.body.email, 
         SportId: req.body.SportId,
         CountryId: req.session.aydi,
@@ -162,7 +163,7 @@ class CountryCtr{
       .catch(err => {
         console.log(err)
         const errs = err.errors.map(el => el.message)
-        res.redirect(`/countries/athletes/add?err=${errs}`)
+        res.redirect(`/countries/athletes/edit?err=${errs}`)
       })
   }
 
