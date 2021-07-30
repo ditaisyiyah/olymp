@@ -2,32 +2,29 @@
 
 <div style="display: flex; justify-content: space-between; align-items: baseline;">
   <h2>Welcome, <%= name %> !</h2>
-  <div style="display: flex; justify-content: space-between;">
-    <h4 style="padding: 0vh 1vw;"><a href="/countries">Home</a></h4>
-    <h4 style="padding: 0vh 1vw;"><a href="/countries/sports">Sports</a></h4>
-    <h4 style="padding: 0vh 1vw;"><a href="/countries/athletes">Athletes</a></h4>
-    <h4 style="padding: 0vh 1vw;"><a href="/">Logout</a></h4>
-  </div>
+  <%- include('../partials/menu') %>
 </div>
 
-<br><br>
+<br><br><br>
 
-<table class="table" style="text-align: center;">
-  <tr>
-    <th>No.</th>
-    <th>ID</th>
-    <th>Sport</th>
-    <th>Player</th>
-  </tr>
-  <% data.forEach((el, i) => { %>
-    <tr>
-      <td><%= i+1 %></td>
-      <td><%= el.id %></td>
-      <td><%= el.name %></td>
-      <td><%= el.Athletes.length %></td>
+<div class="table-responsive">
+  <table class="table  table-striped align-middle" style="text-align: center;">
+    <tr class="table-dark">
+      <th>No.</th>
+      <th>ID</th>
+      <th>Sport</th>
+      <th>Player</th>
     </tr>
-  <% }) %>
-</table>
+    <% data.forEach((el, i) => { %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= el.id %></td>
+        <td><%= el.name %></td>
+        <td><%= el.Athletes.length %></td>
+      </tr>
+    <% }) %>
+  </table>
+</div>
 
 
 

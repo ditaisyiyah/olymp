@@ -2,49 +2,40 @@
 
 <div style="display: flex; justify-content: space-between; align-items: baseline;">
   <h2>Welcome, <%= name %> !</h2>
-  <div style="display: flex; justify-content: space-between;">
-    <h4 style="padding: 0vh 1vw;"><a href="/countries">Home</a></h4>
-    <h4 style="padding: 0vh 1vw;"><a href="/countries/sports">Sports</a></h4>
-    <h4 style="padding: 0vh 1vw;"><a href="/countries/athletes">Athletes</a></h4>
-    <h4 style="padding: 0vh 1vw;"><a href="/">Logout</a></h4>
-  </div>
+  <%- include('../partials/menu') %>
 </div>
 
-<br><br>
-<!--  -->
-<h5><a href="/countries/athletes/add">Add an Athlete</a></h5>
-
-<div style="text-align: center;">
-  <%= msg %>
-</div>
 <br>
+<h5><a href="/countries/athletes/add" class="btn btn-success">Add an Athlete</a></h5>
+<p style="text-align: right;"><%= msg %></p>
 
-<table class="table" style="text-align: center;">
-  <tr>
-    <th>No.</th>
-    <th>ID</th>
-    <th>Full Name</th>
-    <th>Sport</th>
-    <th>Gender</th>
-    <th>Age</th>
-    <th>Email Address</th>
-    <th>Actions</th>
-  </tr>
-  <% data.forEach((el, i) => { %>
-    <tr>
-      <td><%= i+1 %></td>
-      <td><%= el.id %></td>
-      <td><%= el.getName() %></td>
-      <td><%= el.Sport.name %></td>
-      <td style="font-size: x-large;"><%= el.getGender() %></td>
-      <td><%= el.getAge() %></td>
-      <td><%= el.email %></td>
-      <td><a href="/countries/athletes/<%= el.id %>/edit">Edit</a> | 
-      <a href="/countries/athletes/<%= el.id %>/delete" onclick="return confirm('Are you sure want to delete Athlete ID <%= el.id %>?')">Delete</a>
-      </td>
+<div class="table-responsive">
+  <table class="table table-striped align-middle" style="text-align: center;">
+    <tr class="table-dark">
+      <th>No.</th>
+      <th>ID</th>
+      <th>Full Name</th>
+      <th>Sport</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Email Address</th>
+      <th>Actions</th>
     </tr>
-  <% }) %>
-</table>
+    <% data.forEach((el, i) => { %>
+      <tr>
+        <td><%= i+1 %></td>
+        <td><%= el.id %></td>
+        <td><%= el.getName() %></td>
+        <td><%= el.Sport.name %></td>
+        <td style="font-size: x-large;"><%= el.getGender() %></td>
+        <td><%= el.getAge() %></td>
+        <td><%= el.email %></td>
+        <td><a href="/countries/athletes/<%= el.id %>/edit" class="btn btn-dark btn-sm">Edit</a> <a href="/countries/athletes/<%= el.id %>/delete" class="btn btn-secondary btn-sm" onclick="return confirm('Are you sure want to delete Athlete ID <%= el.id %>?')">Delete</a>
+        </td>
+      </tr>
+    <% }) %>
+  </table>
+</div>
 
 
 
