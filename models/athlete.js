@@ -90,7 +90,7 @@ module.exports = (sequelize, DataTypes) => {
   })
   
   Athlete.addHook('beforeUpdate', (instance, options)=>{
-    if(!instance.last_name) instance.last_name = instance.first_name//FIXME
+    if(!instance.last_name) instance.last_name = instance.first_name
   })
   return Athlete;
 };
